@@ -20,6 +20,5 @@ public class FlipPage : MonoBehaviour
             print(i);
             page.transform.GetChild(1).GetChild(i).gameObject.SetActive(!isTrue);
         }
-        Debug.Log("Hello");
     }
 }
