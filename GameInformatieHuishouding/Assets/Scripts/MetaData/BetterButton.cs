@@ -1,10 +1,8 @@
-/*using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
-using UnityEngine.UI;
-using TMPro;
 
 public class BetterButton : MonoBehaviour, IPointerClickHandler, ISelectHandler, IDeselectHandler
 {
@@ -41,24 +39,12 @@ public class BetterButton : MonoBehaviour, IPointerClickHandler, ISelectHandler,
     public void OnSelect(BaseEventData eventData)
     {
         isSelected = true;
-        Grow(1.08f);
+        //Grow(1.08f);
     }
     public void OnDeselect(BaseEventData eventData)
     {
         isSelected = false;
-        Shrink();
-    }
-
-    public void OnGamepad()
-    {
-        if (playerInput.actions["LCButton"].triggered)
-        {
-            onLeftClick.Invoke();
-        }
-        if (playerInput.actions["RCButton"].triggered)
-        {
-            onRightClick.Invoke();
-        }
+        //Shrink();
     }
 
 
@@ -67,10 +53,6 @@ public class BetterButton : MonoBehaviour, IPointerClickHandler, ISelectHandler,
 
     public void Update()
     {
-        if (isSelected)
-        {
-            OnGamepad();
-        }
         if (growing)
         {
             tie += Time.deltaTime;
@@ -101,19 +83,4 @@ public class BetterButton : MonoBehaviour, IPointerClickHandler, ISelectHandler,
         shrinking = true;
         tie = 0;
     }
-
-    public void UpdateText(Settings.language lan)
-    {
-        if (!hasText) return;
-        TMP_Text te = GetComponentInChildren<TMP_Text>();
-        switch (lan)
-        {
-            case Settings.language.English:
-                te.text = enText;
-                break;
-            case Settings.language.Dutch:
-                te.text = nlText;
-                break;
-        }
-    }
-}*/
+}
