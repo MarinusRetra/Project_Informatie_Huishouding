@@ -1,0 +1,119 @@
+/*using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
+
+public class BetterButton : MonoBehaviour, IPointerClickHandler, ISelectHandler, IDeselectHandler
+{
+    public UnityEvent onLeftClick;
+    public UnityEvent onRightClick;
+    public UnityEvent onMiddleClick;
+    public int speed = 45; // Number of frames to completely interpolate between the 2 positions
+    Vector3 startScale;
+    Vector3 fullScale;
+    bool growing = false;
+    bool shrinking = false;
+    public bool isSelected = false;
+
+    private void Start()
+    {
+        startScale = transform.localScale;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //If there is input on any mouse buttons it will send it here
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            onLeftClick.Invoke();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            onRightClick.Invoke();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Middle)
+        {
+            onMiddleClick.Invoke();
+        }
+    }
+    public void OnSelect(BaseEventData eventData)
+    {
+        isSelected = true;
+        Grow(1.08f);
+    }
+    public void OnDeselect(BaseEventData eventData)
+    {
+        isSelected = false;
+        Shrink();
+    }
+
+    public void OnGamepad()
+    {
+        if (playerInput.actions["LCButton"].triggered)
+        {
+            onLeftClick.Invoke();
+        }
+        if (playerInput.actions["RCButton"].triggered)
+        {
+            onRightClick.Invoke();
+        }
+    }
+
+
+    float tie = 0;
+    float sizeIncrease = 1.2f;
+
+    public void Update()
+    {
+        if (isSelected)
+        {
+            OnGamepad();
+        }
+        if (growing)
+        {
+            tie += Time.deltaTime;
+            transform.localScale = Vector3.Lerp(startScale, new Vector3(startScale.x * sizeIncrease, startScale.y * sizeIncrease, startScale.z * sizeIncrease), speed * tie);
+            if (transform.localScale.x == sizeIncrease) { growing = false; }
+        }
+        if (shrinking)
+        {
+            tie += Time.deltaTime;
+
+            transform.localScale = Vector3.Lerp(fullScale, startScale, speed * tie);
+            if (transform.localScale.x == sizeIncrease) { shrinking = false; }
+        }
+    }
+
+    public void Grow(float size)
+    {
+        sizeIncrease = size;
+        shrinking = false;
+        growing = true;
+        tie = 0;
+    }
+    public void Shrink()
+    {
+        fullScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        sizeIncrease = 1;
+        growing = false;
+        shrinking = true;
+        tie = 0;
+    }
+
+    public void UpdateText(Settings.language lan)
+    {
+        if (!hasText) return;
+        TMP_Text te = GetComponentInChildren<TMP_Text>();
+        switch (lan)
+        {
+            case Settings.language.English:
+                te.text = enText;
+                break;
+            case Settings.language.Dutch:
+                te.text = nlText;
+                break;
+        }
+    }
+}*/
