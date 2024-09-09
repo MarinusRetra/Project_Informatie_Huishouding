@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    public Transform player;
-    public float mouseSensitivity = 2f;
-    float cameraVerticalRotation = 0f;
+    public float mouseSensivity = 500f;
 
-    //bool lockedCursor = true;
+    public Transform Player;
+
+    float xRotation = 0f;
+    float yRotation = 0f;
 
     void Start()
     {
@@ -16,14 +18,17 @@ public class Camera : MonoBehaviour
 
     void Update()
     {
-        float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseX = -Input.GetAxis("Mouse X") * mouseSensivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensivity * Time.deltaTime;
 
+        xRotation -= mouseY;
+        xRotation = Math.Clamp(xRotation, -90f, 90f);
 
-        cameraVerticalRotation -= inputY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
-        transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
+        yRotation -= mouseX;
+        yRotation = Math.Clamp(yRotation, -90f, 90f);
 
-        player.Rotate(Vector3.up * inputX);
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        Player.Rotate(Vector3.up * mouseX);
+
     }
 }
