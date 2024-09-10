@@ -117,7 +117,8 @@ public class IsTextCloseEnough : MonoBehaviour
 
     public void PutOntoPaper()
     {
-        string[] types = {"Datum","Type","Titel","Organizatie","Versie"};
+        string[] types = { "Titel","Datum", "Organizatie","Type","Versie"};
+        int[] sorting = {1,3,0,2,4};
         for (int i = 0; i < 5; i++)
         {
             //Sets the type text
@@ -125,8 +126,19 @@ public class IsTextCloseEnough : MonoBehaviour
             te.text = types[i] + ":";
 
             //Sets "te" to the other text
-            te = topicTextArea[i].transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
-            te.text = actualText[i];
+            te = topicTextArea[sorting[i]].transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
+            if (i == 0)
+            {
+                te.text = actualText[i].Substring(0, 2);
+                te.text += "/";
+                te.text += actualText[i].Substring(2, 2);
+                te.text += "/";
+                te.text += actualText[i].Substring(4, 4);
+            }
+            else
+            {
+                te.text = actualText[i];
+            }
         }
 
     }
