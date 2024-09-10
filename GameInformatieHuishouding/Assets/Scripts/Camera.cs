@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    public static bool BlindMode = false;
+    public static bool BlindMode = true;
 
     [SerializeField]
     List<GameObject> InteractableObjects;
@@ -33,14 +33,22 @@ public class Camera : MonoBehaviour
     {
         if (BlindMode)
         { 
-            if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift) && selectedObject < InteractableObjects.Count-1)
+            if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
             {
                 selectedObject++;
+                if (selectedObject == InteractableObjects.Count)
+                {
+                    selectedObject = 0;
+                }
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
-            if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift) && selectedObject > 0)
+            if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
             {
                 selectedObject--;
+                if (selectedObject < 0)
+                {
+                    selectedObject = InteractableObjects.Count - 1;
+                }
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
         }

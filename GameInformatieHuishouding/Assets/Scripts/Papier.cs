@@ -1,20 +1,23 @@
-using System.Collections;
 using UnityEngine;
 
 public class Papier : MonoBehaviour, IInteractable
 {
-    bool HoldingPaper = false;
+    public static bool HoldingPaper = false;
 
     public Interactor InteractionScript;
     public Material OutlineMat;
     public string OutlineScale;
     public GameObject PapierObject;
 
+    void Start()
+    {
+        HoldingPaper = false;
+    }
     void Update()
     {
         if(HoldingPaper)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.R))
                 ViewPaper();
         }
 
@@ -25,20 +28,9 @@ public class Papier : MonoBehaviour, IInteractable
         else
             OutlineMat.SetFloat(OutlineScale, 0f);
     }
-
-    private IEnumerator WaitAndDisable()
-    {
-        yield return new WaitForSeconds(0.8f);
-        HoldingPaper = !HoldingPaper;
-    }
-
     public void Interact()
     {
-        if (!HoldingPaper)
-        {
-            ViewPaper();
-            StartCoroutine(WaitAndDisable());
-        }
+       HoldingPaper = true;
     }
 
     public string GetInteractionText()
