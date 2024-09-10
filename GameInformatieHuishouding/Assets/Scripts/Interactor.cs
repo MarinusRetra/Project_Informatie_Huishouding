@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 interface IInteractable
 {
@@ -12,7 +13,9 @@ public class Interactor : MonoBehaviour
 {
     public Transform InteractorTansform;
     public float InteractRange;
+    [HideInInspector]
     public TextMeshProUGUI interactionText;
+    [HideInInspector]
     public GameObject Crossair;
     private bool isWaiting = false;
     private Coroutine interactionCoroutine;
@@ -20,6 +23,12 @@ public class Interactor : MonoBehaviour
 
     [HideInInspector]
     public bool isHovering = false;
+
+    private void Start()
+    {
+        interactionText = GameObject.Find("InteractionText").GetComponent<TextMeshProUGUI>();
+        Crossair = GameObject.Find("Crossair");
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))

@@ -5,10 +5,15 @@ public class PapierBak : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private string opslagNaam;
-    public Interactor InteractionScript;
+    Interactor InteractionScript;
     public Material OutlineMat;
     public string OutlineScale;
 
+
+    void Start()
+    {
+        InteractionScript = GameObject.Find("Player").GetComponent<Interactor>();
+    }
     void Update()
     {
         if (InteractionScript.isHovering)

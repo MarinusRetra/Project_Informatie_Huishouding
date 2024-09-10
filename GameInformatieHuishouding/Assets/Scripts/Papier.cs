@@ -4,13 +4,16 @@ public class Papier : MonoBehaviour, IInteractable
 {
     public static bool HoldingPaper = false;
 
-    public Interactor InteractionScript;
+    Interactor InteractionScript;
     public Material OutlineMat;
     public string OutlineScale;
-    public GameObject PapierObject;
+    GameObject PapierObject;
 
     void Start()
     {
+        InteractionScript = GameObject.Find("Player").GetComponent<Interactor>();
+        PapierObject = GameObject.Find("PaperObject");
+        PapierObject.SetActive(false);
         HoldingPaper = false;
     }
     void Update()
