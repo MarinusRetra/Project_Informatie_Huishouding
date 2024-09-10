@@ -49,7 +49,7 @@ public class IsTextCloseEnough : MonoBehaviour
                 int index = 0;
                 for (int j = 0; j < text.Length; j++)
                 {
-                    if (text[j] == actualText[i][0] && text[j+1] == actualText[i][1])
+                    if (actualText[i].Length > 1 && text[j] == actualText[i][0] && text[j+1] == actualText[i][1])
                     {
                         print("Found it! Index: " + j);
                         index = j;
@@ -69,9 +69,10 @@ public class IsTextCloseEnough : MonoBehaviour
             }
         }
 
-        float percent = (100 / ((float)fullText.Length)) * (float)amountGood;
+        float tot = ((float)fullText.Length) + ((float)fullText.Length - ((float)amountGood)) * 5;
+        float percent = (100 / tot) * (float)amountGood;
         print(percent);
-        print("Score: " + amountGood + "/" + fullText.Length);
+        print("Score: " + amountGood + "/" + tot);
     }
 
     public void MakeName()
