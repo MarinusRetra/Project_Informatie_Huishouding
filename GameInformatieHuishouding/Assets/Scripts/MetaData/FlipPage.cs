@@ -12,12 +12,10 @@ public class FlipPage : MonoBehaviour
         bool isTrue = !page.transform.GetChild(0).GetChild(0).gameObject.activeSelf;
         for (int i = 0;i < page.transform.GetChild(0).childCount; i++)
         {
-            print(i);
             page.transform.GetChild(0).GetChild(i).gameObject.SetActive(isTrue);
         }
         for (int i = 0; i < page.transform.GetChild(1).childCount; i++)
         {
-            print(i);
             page.transform.GetChild(1).GetChild(i).gameObject.SetActive(!isTrue);
         }
     }
