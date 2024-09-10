@@ -7,10 +7,15 @@ using UnityEngine.Events;
 
 public class TTS : MonoBehaviour
 {
+    public static TTS instance;
     SpVoice voice = new SpVoice();
 
+    private void Start()
+    {
+        instance = this;
+    }
 
-    public void TaskOnClick(string text)
+    public void Talk(string text)
     {
         voice.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync | SpeechVoiceSpeakFlags.SVSFPurgeBeforeSpeak);
 
