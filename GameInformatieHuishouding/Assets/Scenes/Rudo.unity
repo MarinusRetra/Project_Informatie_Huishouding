@@ -2984,6 +2984,7 @@ GameObject:
   - component: {fileID: 1112785087}
   - component: {fileID: 1112785086}
   - component: {fileID: 1112785085}
+  - component: {fileID: 1112785088}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3041,6 +3042,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1112785088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112785084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41210861c99964f4e9a572302b22d752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1148441132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4046,6 +4059,13 @@ MonoBehaviour:
   - IForgot
   - WhereDidTablesComeFrom
   - RAGE
+  - Blackmail
+  - BlueMail
+  - MyHusbandIsntACompany
+  - LookUp
+  - YouJustLostTheGame
+  - LookBehindYou
+  - LookLeftAndRightBeforeCrossingTheStreet
   allTypes:
   - Handleiding
   - Advies
@@ -4058,6 +4078,9 @@ MonoBehaviour:
   - Unity
   - Noorderpoort
   - Worms
+  - 7/11
+  - It came to me in a dream.
+  - De Jumbo
 --- !u!114 &1591298406
 MonoBehaviour:
   m_ObjectHideFlags: 0

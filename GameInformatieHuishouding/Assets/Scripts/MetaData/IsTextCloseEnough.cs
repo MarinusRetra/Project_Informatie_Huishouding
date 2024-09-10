@@ -20,6 +20,8 @@ public class IsTextCloseEnough : MonoBehaviour
     {
         MakeName();
         PutOntoPaper();
+        StartCoroutine(ReadInfo());
+        ReadInfo();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class IsTextCloseEnough : MonoBehaviour
 
     public void CheckText(string text)
     {
+        TTS.instance.Talk(text);
         int amountGood = 0;
         for(int i = 0; i < text.Length; i++)
         {
@@ -141,5 +144,18 @@ public class IsTextCloseEnough : MonoBehaviour
             }
         }
 
+    }
+    public IEnumerator ReadInfo()
+    {
+        string fullTalk = "";
+        for (int i = 0; i < topicTextArea.Length; i++)
+        {
+            fullTalk += topicTextArea[i].transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text;
+            fullTalk += "      ";
+            fullTalk += topicTextArea[i].transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text;
+            fullTalk += "                      ...";
+        }
+        yield return new WaitForSeconds(0);
+        TTS.instance.Talk(fullTalk);
     }
 }
