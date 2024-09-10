@@ -1,24 +1,23 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
 public class Papier : MonoBehaviour, IInteractable
 {
-    bool HoldingPaper = true;
+    bool HoldingPaper = false;
 
     public Interactor InteractionScript;
     public Material OutlineMat;
     public string OutlineScale;
-
-    Animator animator;
-
-    void Start()
-    {
-        animator = gameObject.GetComponent<Animator>();
-    }
+    public GameObject PapierObject;
 
     void Update()
     {
+        if(HoldingPaper)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+                ViewPaper();
+        }
+
         if (InteractionScript.isHovering)
         {
             OutlineMat.SetFloat(OutlineScale, 1.05f);
@@ -26,7 +25,6 @@ public class Papier : MonoBehaviour, IInteractable
         else
             OutlineMat.SetFloat(OutlineScale, 0f);
     }
-
 
     private IEnumerator WaitAndDisable()
     {
@@ -36,19 +34,28 @@ public class Papier : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (HoldingPaper)
+        if (!HoldingPaper)
         {
-            animator.Play("Pak");
+            ViewPaper();
+            StartCoroutine(WaitAndDisable());
         }
-        else
-            animator.Play("Leg");
-
-        StartCoroutine(WaitAndDisable());
     }
 
     public string GetInteractionText()
     {
-        return HoldingPaper ? "Pak papier" : "Leg papier neer";
+        return HoldingPaper ? "Leg eerst je oude papier weg" : "Pak papier 'E' ";
+    }
 
+    void ViewPaper()
+    {
+        Camera.ToggleCameraLock();
+        Cursor.visible = !Cursor.visible;
+        Cursor.lockState = CursorLockMode.Confined;
+        PapierObject.SetActive(!PapierObject.activeSelf);
+
+        if (PapierObject.activeSelf)
+            Cursor.lockState = CursorLockMode.Confined;
+        else
+            Cursor.lockState = CursorLockMode.Locked;
     }
 }

@@ -29,7 +29,6 @@ public class Interactor : MonoBehaviour
                 interactionCoroutine = StartCoroutine(WaitAndInteract(0.5f));
             }
         }
-
         UpdateUI(); // is alleen een functie om de update leesbaar te houden
     }
 
