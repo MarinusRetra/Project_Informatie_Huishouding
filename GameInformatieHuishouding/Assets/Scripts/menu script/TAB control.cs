@@ -5,20 +5,36 @@ using UnityEngine.EventSystems;
 
 public class TABcontrol : MonoBehaviour
 {
-    public GameObject firstbutton,ButtonMainmenu, closebutton;
-    public GameObject firstbutton1,Buttonoptionsmenu, closebutton1;
-    public GameObject firstbutton2,Buttongraficsmenu, closebutton2;
-    public GameObject firstbutton3,ButtonTTSsmenu, closebutton3;
+    public GameObject MainMenu;
+    public GameObject Optionsmenu;
+    public GameObject Graficsbutton;
+    public GameObject TTSButton;
+    public GameObject firstmainbutton;
+    public GameObject firstOptionsmenu;
+    public GameObject firstGraficsbutton;
+    public GameObject firstTTSButton;
 
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        movebutton();
+        moveOptions();
+    }
+
+    void movebutton()
+    {
+        if (MainMenu.SetActive = true)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(MainMenu);
+        }
+    }
+
+    void moveOptions()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(Optionsmenu);
     }
 }
