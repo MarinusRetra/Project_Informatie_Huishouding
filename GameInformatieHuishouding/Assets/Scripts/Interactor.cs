@@ -11,6 +11,7 @@ interface IInteractable
 
 public class Interactor : MonoBehaviour
 {
+    public bool doVoice = true;
     public Transform InteractorTansform;
     public float InteractRange;
     [HideInInspector]
@@ -69,7 +70,8 @@ public class Interactor : MonoBehaviour
                 {
                     isHovering = true;
                     interactionText.text = interactObj.GetInteractionText();
-                    //Marlon doe op deze lijn je text to speech logic. <------ interaction.text
+                    if (doVoice)
+                       StartCoroutine(Speak());
                     Vector3 direction = hitInfo.point - transform.position;
                     Canvass.transform.position = hitInfo.point - direction.normalized * Vector3.Distance(transform.position, hitInfo.point) / 2;
                     Canvass.transform.rotation = Quaternion.LookRotation(-direction);
@@ -102,5 +104,12 @@ public class Interactor : MonoBehaviour
         {
             StopCoroutine(interactionCoroutine);
         }
+    }
+
+    IEnumerator Speak()
+    {
+        doVoice = false;
+        TTS.instance.Talk(interactionText.text);
+        yield return new WaitForSeconds(3); 
     }
 }

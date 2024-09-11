@@ -10,6 +10,8 @@ public class Camera : MonoBehaviour
     List<GameObject> InteractableObjects;
     [SerializeField]
     int selectedObject = -1;
+        
+    Interactor interactor;
     public static bool camLocked { get; private set; }
 
     public float mouseSensivity = 500f;
@@ -21,8 +23,11 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
+
         //stopt alle interactable objects in een list
         InteractableObjects = GrabInteractableObjects();
+
+        interactor = GameObject.Find("Player").GetComponent<Interactor>();
 
         camLocked = false;
         Cursor.visible = false;
@@ -35,20 +40,18 @@ public class Camera : MonoBehaviour
         { 
             if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
             {
+                interactor.doVoice = true;
                 selectedObject++;
                 if (selectedObject == InteractableObjects.Count)
-                {
                     selectedObject = 0;
-                }
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
             if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
             {
+                interactor.doVoice = true;
                 selectedObject--;
                 if (selectedObject < 0)
-                {
                     selectedObject = InteractableObjects.Count - 1;
-                }
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
         }
@@ -70,7 +73,6 @@ public class Camera : MonoBehaviour
             }
         }
     }
-
     public static void ToggleCameraLock()
     { 
         Cursor.visible = camLocked;
@@ -85,9 +87,8 @@ public class Camera : MonoBehaviour
         GameObject InteractablesObjects = GameObject.Find("InteractableObjects");
 
         foreach (Transform child in InteractablesObjects.GetComponentInChildren<Transform>())
-        {
             Interactables.Add(child.gameObject);
-        }
+
         return Interactables;
     }
 }
