@@ -12,7 +12,7 @@ public class TTS : MonoBehaviour
     public static TTS instance;
     SpVoice voice = new SpVoice();
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
     }
