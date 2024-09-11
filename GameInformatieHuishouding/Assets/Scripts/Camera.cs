@@ -43,9 +43,7 @@ public class Camera : MonoBehaviour
                 interactor.doVoice = true;
                 selectedObject++;
                 if (selectedObject == InteractableObjects.Count)
-                {
                     selectedObject = 0;
-                }
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
             if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
@@ -53,9 +51,7 @@ public class Camera : MonoBehaviour
                 interactor.doVoice = true;
                 selectedObject--;
                 if (selectedObject < 0)
-                {
                     selectedObject = InteractableObjects.Count - 1;
-                }
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
         }
@@ -77,7 +73,6 @@ public class Camera : MonoBehaviour
             }
         }
     }
-
     public static void ToggleCameraLock()
     { 
         Cursor.visible = camLocked;
@@ -92,9 +87,8 @@ public class Camera : MonoBehaviour
         GameObject InteractablesObjects = GameObject.Find("InteractableObjects");
 
         foreach (Transform child in InteractablesObjects.GetComponentInChildren<Transform>())
-        {
             Interactables.Add(child.gameObject);
-        }
+
         return Interactables;
     }
 }

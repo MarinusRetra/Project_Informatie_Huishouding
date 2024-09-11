@@ -25,9 +25,7 @@ public class Papier : MonoBehaviour, IInteractable
         }
 
         if (InteractionScript.isHovering)
-        {
             OutlineMat.SetFloat(OutlineScale, 1.05f);
-        }
         else
             OutlineMat.SetFloat(OutlineScale, 0f);
     }
