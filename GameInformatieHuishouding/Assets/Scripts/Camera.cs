@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    public static bool BlindMode = true;
+    public static bool BlindMode = false;
 
     [SerializeField]
     List<GameObject> InteractableObjects;
@@ -64,7 +64,6 @@ public class Camera : MonoBehaviour
             xRotation = Math.Clamp(xRotation, -90f, 90f);
 
             yRotation -= mouseX;
-            yRotation = Math.Clamp(yRotation, -90f, 90f);
 
             if (!camLocked)
             { 

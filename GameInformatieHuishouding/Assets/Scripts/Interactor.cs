@@ -69,7 +69,7 @@ public class Interactor : MonoBehaviour
                 {
                     isHovering = true;
                     interactionText.text = interactObj.GetInteractionText();
-                    if (doVoice)
+                    if (doVoice && Camera.BlindMode)
                        StartCoroutine(Speak());
                     Vector3 direction = hitInfo.point - transform.position;
                     Canvass.transform.position = hitInfo.point - direction.normalized * Vector3.Distance(transform.position, hitInfo.point) / 2;
