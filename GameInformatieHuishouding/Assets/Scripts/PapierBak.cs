@@ -23,6 +23,19 @@ public class PapierBak : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        if (opslagNaam == "rijksdocument ")
+        {
+        // check of dit een rijksdocument is
+
+        }
+        else if (opslagNaam == " ")
+        {
+            
+        }
+        else if (opslagNaam == " ")
+        { 
+        
+        }
         Papier.HoldingPaper = false;
     }
 
