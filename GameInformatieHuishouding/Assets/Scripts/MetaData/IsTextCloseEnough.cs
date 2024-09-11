@@ -24,6 +24,8 @@ public class IsTextCloseEnough : MonoBehaviour
 
     [SerializeField] private RawImage blackBackground;
     [SerializeField] private GameObject resultsPaper;
+    [SerializeField] private TMP_Text resultsText;
+    [SerializeField] private GameObject actualResults;
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +109,7 @@ public class IsTextCloseEnough : MonoBehaviour
                     print(prevScore[i]);
                     print(prevGuess[i]);
                     print(prevName[i]);
+                    StartCoroutine(ShowResults());
                 }
             }
             else
@@ -210,5 +213,38 @@ public class IsTextCloseEnough : MonoBehaviour
         blackBackground.color = new Color(0, 0, 0, 0.7f);
         yield return new WaitForSeconds(1);
         resultsPaper.SetActive(true);
+        int goodResults = 0;
+        for(int i = 0;i < prevScore.Count();i++)
+        {
+            if (prevScore[i] > 80)
+            {
+                goodResults++;
+            }
+        }
+
+        switch(goodResults)
+        {
+            case 0:
+                resultsText.text = "Ontslagen";
+                break;
+            case 1:
+                resultsText.text = "Je bent gedegradeerd";
+                break;
+            case 2:
+                resultsText.text = "Je kan het beter doen.";
+                break;
+            case 3:
+                resultsText.text = "Goed bezig!";
+                break;
+            case 4:
+                resultsText.text = "Je bent gepromoveerd!";
+                break;
+            case 5:
+                resultsText.text = "Jij bent nu de baas van het bedrijf";
+                break;
+            case 6:
+                resultsText.text = "Je hebt te veel papierwerk gedaan.";
+                break;
+        }
     }
 }
