@@ -4,9 +4,11 @@ using UnityEngine;
 using SpeechLib;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class TTS : MonoBehaviour
 {
+    public static bool TTSON = true;
     public static TTS instance;
     SpVoice voice = new SpVoice();
 
@@ -14,10 +16,27 @@ public class TTS : MonoBehaviour
     {
         instance = this;
     }
-
+    // step 1 use this code 
     public void Talk(string text)
     {
-        voice.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync | SpeechVoiceSpeakFlags.SVSFPurgeBeforeSpeak);
-
+        if (TTSON == true)
+        {
+           voice.Speak(text, SpeechVoiceSpeakFlags.SVSFlagsAsync | SpeechVoiceSpeakFlags.SVSFPurgeBeforeSpeak);
+        }
+        else
+        {
+            TTSON = false;
+        }
     }
+
+    public void CanTalk(bool canTalk)
+    {
+        TTSON = canTalk;
+    }
+
+
+
+    // step 2 add microsoft speech library version 11
+
 }
+// step 3 profit ?
