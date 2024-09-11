@@ -10,6 +10,8 @@ public class Camera : MonoBehaviour
     List<GameObject> InteractableObjects;
     [SerializeField]
     int selectedObject = -1;
+        
+    Interactor interactor;
     public static bool camLocked { get; private set; }
 
     public float mouseSensivity = 500f;
@@ -21,8 +23,11 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
+
         //stopt alle interactable objects in een list
         InteractableObjects = GrabInteractableObjects();
+
+        interactor = GameObject.Find("Player").GetComponent<Interactor>();
 
         camLocked = false;
         Cursor.visible = false;
@@ -35,6 +40,7 @@ public class Camera : MonoBehaviour
         { 
             if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
             {
+                interactor.doVoice = true;
                 selectedObject++;
                 if (selectedObject == InteractableObjects.Count)
                 {
@@ -44,6 +50,7 @@ public class Camera : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
             {
+                interactor.doVoice = true;
                 selectedObject--;
                 if (selectedObject < 0)
                 {
