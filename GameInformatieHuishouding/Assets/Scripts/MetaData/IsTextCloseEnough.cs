@@ -109,8 +109,8 @@ public class IsTextCloseEnough : MonoBehaviour
                     print(prevScore[i]);
                     print(prevGuess[i]);
                     print(prevName[i]);
-                    StartCoroutine(ShowResults());
                 }
+                StartCoroutine(ShowResults());
             }
             else
             {
@@ -211,6 +211,7 @@ public class IsTextCloseEnough : MonoBehaviour
     public IEnumerator ShowResults()
     {
         blackBackground.color = new Color(0, 0, 0, 0.7f);
+        blackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         resultsPaper.SetActive(true);
         int goodResults = 0;
@@ -245,6 +246,23 @@ public class IsTextCloseEnough : MonoBehaviour
             case 6:
                 resultsText.text = "Je hebt te veel papierwerk gedaan.";
                 break;
+        }
+
+        for(int i = 0; i < prevScore.Count(); i++)
+        {
+            print(prevScore.Count());
+            GameObject res = Instantiate(actualResults);
+            res.transform.parent = resultsText.transform.parent;
+            RectTransform rect = res.GetComponent<RectTransform>();
+            rect.position = resultsText.GetComponent<RectTransform>().position;
+            rect.localScale = new Vector3(1,1,1);
+            rect.position = new Vector3(rect.position.x ,rect.position.y - (100 + (50 * i)));
+
+            res.transform.Find("Number").GetComponent<TMP_Text>().text = (i + 1).ToString();
+            res.transform.Find("Correct").GetComponent<TMP_Text>().text = prevName[i];
+            res.transform.Find("Written").GetComponent<TMP_Text>().text = prevGuess[i];
+            res.transform.Find("Percent").GetComponent<TMP_Text>().text = prevScore[i].ToString();
+
         }
     }
 }
