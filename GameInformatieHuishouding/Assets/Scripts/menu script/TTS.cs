@@ -1,10 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SpeechLib;
-using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class TTS : MonoBehaviour
 {
@@ -15,6 +10,7 @@ public class TTS : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        SetDutchVoice();
     }
     // step 1 use this code 
     public void Talk(string text)
@@ -26,6 +22,21 @@ public class TTS : MonoBehaviour
         else
         {
             TTSON = false;
+        }
+    }
+
+    private void SetDutchVoice()
+    {
+        foreach (SpObjectToken token in voice.GetVoices())
+        {
+            string languageId = token.GetAttribute("Language");
+
+            if (languageId == "1043")
+            {
+                voice.Voice = token;
+                Debug.Log("Dutch voice " + token.GetDescription());
+                break;
+            }
         }
     }
 
