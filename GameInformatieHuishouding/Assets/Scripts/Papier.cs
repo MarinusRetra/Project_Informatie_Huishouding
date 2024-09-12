@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Papier : MonoBehaviour, IInteractable
 {
@@ -45,10 +46,12 @@ public class Papier : MonoBehaviour, IInteractable
     public void Interact()
     {
        HoldingPaper = true;
-       
-       Debug.Log(currentDocument.name);
-       
-       currentDocument.PickDocument();
+       if(SceneManager.GetActiveScene().name == "Archiveer" || SceneManager.GetActiveScene().name == "Marinus")
+        {
+            Debug.Log(currentDocument.name);
+
+            currentDocument.PickDocument();
+        }
        
     }
 
