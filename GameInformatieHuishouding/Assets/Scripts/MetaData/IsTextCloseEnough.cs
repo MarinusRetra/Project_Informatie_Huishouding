@@ -267,8 +267,8 @@ public class IsTextCloseEnough : MonoBehaviour
                 resultsText.text = "Je hebt te veel papierwerk gedaan.";
                 break;
         }
-
-        for(int i = 0; i < prevScore.Count(); i++)
+        TabControle cont = FindObjectOfType<TabControle>();
+        for (int i = 0; i < prevScore.Count(); i++)
         {
             GameObject res = Instantiate(actualResults);
             res.transform.parent = resultsText.transform.parent;
@@ -281,8 +281,13 @@ public class IsTextCloseEnough : MonoBehaviour
             res.transform.Find("Correct").GetComponent<TMP_Text>().text = prevName[i];
             res.transform.Find("Written").GetComponent<TMP_Text>().text = prevGuess[i];
             res.transform.Find("Percent").GetComponent<TMP_Text>().text = ((int)(prevScore[i])).ToString();
+            cont.stuff.Add(res.transform.Find("Number").gameObject);
+            cont.stuff.Add(res.transform.Find("Correct").gameObject);
+            cont.stuff.Add(res.transform.Find("Written").gameObject);
+            cont.stuff.Add(res.transform.Find("Percent").gameObject);
 
         }
+        cont.stuff.Add(resultsText.transform.parent.Find("Exit").gameObject);
     }
     public void SpeakCharacter(string character)
     {
