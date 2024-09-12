@@ -16,8 +16,8 @@ public class PapierBak : MonoBehaviour, IInteractable
     }
     void Update()
     {
-        if (InteractionScript.isHovering)
-            OutlineMat.SetFloat(OutlineScale, 1.05f);
+        if (InteractionScript.isHovering && InteractionScript.interactionText.text == GetInteractionText())
+            OutlineMat.SetFloat(OutlineScale, 1.03f);
         else
             OutlineMat.SetFloat(OutlineScale, 0f);
     }

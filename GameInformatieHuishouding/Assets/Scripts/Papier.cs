@@ -32,7 +32,7 @@ public class Papier : MonoBehaviour, IInteractable
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if (InteractionScript.isHovering)
+        if (InteractionScript.isHovering && InteractionScript.interactionText.text == GetInteractionText())
             OutlineMat.SetFloat(OutlineScale, 1.05f);
         else
             OutlineMat.SetFloat(OutlineScale, 0f);

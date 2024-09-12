@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    public static bool BlindMode = false;
+    public static bool BlindMode = true;
 
     [SerializeField]
     List<GameObject> InteractableObjects;
@@ -23,7 +23,6 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
-
         //stopt alle interactable objects in een list
         InteractableObjects = GrabInteractableObjects();
 
