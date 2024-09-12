@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DocumentData", menuName = "Documents")]
 public class DocumentData : ScriptableObject
 {
-    public string documentName;
     public Documents.DocumentCategory category; //roep de document data aan
     //diverse categorieen waarin de documenten moet lezen of die mag gearchiveerd mag zijn
     //zie document overzicht arhief en bij te archieveer bij stukken
