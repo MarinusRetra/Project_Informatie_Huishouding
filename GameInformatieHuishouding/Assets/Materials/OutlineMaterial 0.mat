@@ -75,7 +75,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Scale: 0
+    - _Scale: 1.03
     - _Scale0: 1.05
     - _Scale1: 1.05
     - _SmoothnessTextureChannel: 0
