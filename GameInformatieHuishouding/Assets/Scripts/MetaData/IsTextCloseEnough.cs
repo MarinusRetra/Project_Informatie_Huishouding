@@ -27,6 +27,10 @@ public class IsTextCloseEnough : MonoBehaviour
     [SerializeField] private TMP_Text resultsText;
     [SerializeField] private GameObject actualResults;
 
+    [SerializeField] private TMP_InputField field;
+
+    private bool finishedPaper = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +45,15 @@ public class IsTextCloseEnough : MonoBehaviour
 
     public void CheckText(string text)
     {
-        if(text != "" && text != " ")
+        if(text != "" && text != " " && !finishedPaper)
         {
+            if(amountOfMinigamesDone > 0)
+            {
+                if(text == prevGuess[amountOfMinigamesDone - 1])
+                {
+                    return;
+                }
+            }
             TTS.instance.Talk(text);
             int amountGood = 0;
             for (int i = 0; i < text.Length; i++)
@@ -94,6 +105,8 @@ public class IsTextCloseEnough : MonoBehaviour
             prevGuess[amountOfMinigamesDone] = text;
             amountOfMinigamesDone++;
 
+            field.text = " ";
+
             if (percent > 80)
             {
                 print("Good job! You get a cookie! Except you dont!");
@@ -102,6 +115,7 @@ public class IsTextCloseEnough : MonoBehaviour
             {
                 print("BOOOOOO YOU SUCK");
             }
+            finishedPaper = true;
             if (amountOfMinigamesDone > 4)
             {
                 for (int i = 0; i < amountOfMinigamesDone; i++)
@@ -203,6 +217,7 @@ public class IsTextCloseEnough : MonoBehaviour
 
     public void StartPaperGame()
     {
+        finishedPaper = false;
         MakeName();
         PutOntoPaper();
         ReadInfo();
@@ -261,8 +276,13 @@ public class IsTextCloseEnough : MonoBehaviour
             res.transform.Find("Number").GetComponent<TMP_Text>().text = (i + 1).ToString();
             res.transform.Find("Correct").GetComponent<TMP_Text>().text = prevName[i];
             res.transform.Find("Written").GetComponent<TMP_Text>().text = prevGuess[i];
-            res.transform.Find("Percent").GetComponent<TMP_Text>().text = prevScore[i].ToString();
+            res.transform.Find("Percent").GetComponent<TMP_Text>().text = ((int)(prevScore[i])).ToString();
 
         }
+    }
+    public void SpeakCharacter(string character)
+    {
+        
+        TTS.instance.Talk(character);
     }
 }
