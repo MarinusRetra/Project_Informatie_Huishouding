@@ -52,7 +52,7 @@ public class Papier : MonoBehaviour, IInteractable
 
     void ViewPaper()
     {
-        GameObject.Find("Player").GetComponent<Camera>().enabled = PapierObject.activeSelf;
+        GameObject.Find("Player").GetComponent<Camera>().SwitchCanTab(PapierObject.activeSelf);
         interactionText.SetActive(PapierObject.activeSelf);
         FindAnyObjectByType<TabControle>().canUse(!PapierObject.activeSelf);
         Camera.ToggleCameraLock();
