@@ -10,6 +10,8 @@ public class Papier : MonoBehaviour, IInteractable
     GameObject PapierObject;
     public bool canLetDown = true;
     GameObject interactionText;
+    public DocumentGenerator currentDocument;
+
 
     void Start()
     {
@@ -43,6 +45,11 @@ public class Papier : MonoBehaviour, IInteractable
     public void Interact()
     {
        HoldingPaper = true;
+       
+       Debug.Log(currentDocument.name);
+       
+       currentDocument.PickDocument();
+       
     }
 
     public string GetInteractionText()
