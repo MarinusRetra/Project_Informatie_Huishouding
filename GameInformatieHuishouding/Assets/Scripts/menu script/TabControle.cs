@@ -49,6 +49,7 @@ public class TabControle : MonoBehaviour
     public void GoToNextStuff(int offset)
     {
         GameObject lastBtn = stuff[currentorder];
+        int beforeOrder = currentorder;
         currentorder += offset;
         for (int i = 0; i < 100; i++)
         {
@@ -94,6 +95,10 @@ public class TabControle : MonoBehaviour
                 currentorder += offset;
 
             }
+            if(i == 99)
+            {
+                currentorder = beforeOrder;
+            }
         }
         string read = "";
         if (stuff[currentorder].GetComponent<Button>() != null)
@@ -108,6 +113,7 @@ public class TabControle : MonoBehaviour
         if (stuff[currentorder].GetComponent<TMP_InputField>() != null)
         {
             read = "Input Field";
+            stuff[currentorder].GetComponent<TMP_InputField>().ActivateInputField();
         }
 
         if (lastBtn.GetComponent<Button>() != null)
