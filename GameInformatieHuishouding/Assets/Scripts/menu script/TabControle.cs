@@ -24,6 +24,19 @@ public class TabControle : MonoBehaviour
         {
             GoToNextStuff(-1);
         }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (stuff[currentorder].GetComponent<Button>() != null)
+            {
+                stuff[currentorder].GetComponent<Button>().OnSubmit(null);
+            }
+            if (stuff[currentorder].GetComponent<BetterButton>() != null)
+            {
+                stuff[currentorder].GetComponent<BetterButton>().onLeftClick.Invoke();
+                stuff[currentorder].GetComponent<BetterButton>().onRightClick.Invoke();
+            }
+        }
     }
 
     private void GoToNextStuff(int offset)
