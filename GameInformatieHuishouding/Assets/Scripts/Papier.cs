@@ -48,7 +48,6 @@ public class Papier : MonoBehaviour, IInteractable
        HoldingPaper = true;
        if(SceneManager.GetActiveScene().name == "Archiveer" || SceneManager.GetActiveScene().name == "Marinus")
         {
-            Debug.Log(currentDocument.name);
 
             currentDocument.PickDocument();
         }
