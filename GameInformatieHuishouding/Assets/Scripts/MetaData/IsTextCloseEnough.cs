@@ -217,6 +217,9 @@ public class IsTextCloseEnough : MonoBehaviour
 
     public IEnumerator ShowResults()
     {
+        Camera.ToggleCameraLock();
+        Cursor.visible = !Cursor.visible;
+        Cursor.lockState = CursorLockMode.None;
         GameObject.Find("Player").GetComponent<Interactor>().enabled = false;
         blackBackground.color = new Color(0, 0, 0, 0.7f);
         blackBackground.gameObject.SetActive(true);

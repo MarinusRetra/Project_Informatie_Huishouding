@@ -57,7 +57,7 @@ public class Papier : MonoBehaviour, IInteractable
         if (PapierObject.activeSelf)
         {
             FindAnyObjectByType<IsTextCloseEnough>().ReadInfo();
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
             Cursor.lockState = CursorLockMode.Locked;
