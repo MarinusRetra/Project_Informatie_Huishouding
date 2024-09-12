@@ -169,7 +169,7 @@ public class IsTextCloseEnough : MonoBehaviour
 
     public void PutOntoPaper()
     {
-        string[] types = { "Titel","Datum", "Organizatie","Type","Versie"};
+        string[] types = { "Titel","Datum", "Organisatie","Type","Versie"};
         int[] sorting = {1,3,0,2,4};
         for (int i = 0; i < 5; i++)
         {
@@ -204,7 +204,7 @@ public class IsTextCloseEnough : MonoBehaviour
             fullTalk += topicTextArea[i].transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text;
             fullTalk += "                      ...";
         }
-        TTS.instance.Talk(fullTalk);
+        //TTS.instance.Talk(fullTalk);
     }
 
     public void StartPaperGame()

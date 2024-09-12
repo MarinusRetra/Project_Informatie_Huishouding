@@ -52,6 +52,7 @@ public class Papier : MonoBehaviour, IInteractable
 
     void ViewPaper()
     {
+        IsTextCloseEnough close = FindAnyObjectByType<IsTextCloseEnough>();
         GameObject.Find("Player").GetComponent<Camera>().SwitchCanTab(PapierObject.activeSelf);
         interactionText.SetActive(PapierObject.activeSelf);
         FindAnyObjectByType<TabControle>().canUse(!PapierObject.activeSelf);
@@ -61,11 +62,17 @@ public class Papier : MonoBehaviour, IInteractable
 
         if (PapierObject.activeSelf)
         {
-            FindAnyObjectByType<IsTextCloseEnough>().ReadInfo();
+            close.ReadInfo();
             Cursor.lockState = CursorLockMode.None;
+            if (Camera.BlindMode)
+            {
+                close.field.ActivateInputField();
+            }
         }
         else
+        {
             Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void SetCanLetDown(bool canLet)
