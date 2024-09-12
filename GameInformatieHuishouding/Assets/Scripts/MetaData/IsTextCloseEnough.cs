@@ -165,7 +165,6 @@ public class IsTextCloseEnough : MonoBehaviour
                 fullText += " ";
             }
         }
-        print(fullText);
     }
 
     public void PutOntoPaper()
