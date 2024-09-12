@@ -14,7 +14,7 @@ public class TabControle : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Metadata")
+        if (SceneManager.GetActiveScene().name == "Metadata" || SceneManager.GetActiveScene().name == "Archiveer" || SceneManager.GetActiveScene().name == "Marinus")
         {
             isEnabled = false;
         }
@@ -33,7 +33,7 @@ public class TabControle : MonoBehaviour
             GoToNextStuff(-1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E))
         {
             if (stuff[currentorder].GetComponent<Button>() != null)
             {
