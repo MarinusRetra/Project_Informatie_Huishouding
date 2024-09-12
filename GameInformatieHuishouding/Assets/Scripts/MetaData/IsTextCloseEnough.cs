@@ -12,6 +12,9 @@ public class IsTextCloseEnough : MonoBehaviour
     private string fullText = "ManIDoNotExist";
 
     [SerializeField] private GameObject[] topicTextArea;
+    [SerializeField] private GameObject cheatSheet;
+    [SerializeField] private RectTransform failResultSpot;
+    [SerializeField] private RectTransform failCheatSpot;
 
     [SerializeField] private string[] allTitles;
     [SerializeField] private string[] allTypes;
@@ -27,7 +30,7 @@ public class IsTextCloseEnough : MonoBehaviour
     [SerializeField] private TMP_Text resultsText;
     [SerializeField] private GameObject actualResults;
 
-    [SerializeField] private TMP_InputField field;
+    public TMP_InputField field;
 
     private bool finishedPaper = false;
 
@@ -43,18 +46,14 @@ public class IsTextCloseEnough : MonoBehaviour
         
     }
 
-    public void CheckText(string text)
+    public void CheckText(string text,bool talk = true)
     {
         if(text != "" && text != " " && !finishedPaper)
         {
-            if(amountOfMinigamesDone > 0)
+            if (talk)
             {
-                if(text == prevGuess[amountOfMinigamesDone - 1])
-                {
-                    return;
-                }
+                TTS.instance.Talk(text);
             }
-            TTS.instance.Talk(text);
             int amountGood = 0;
             for (int i = 0; i < text.Length; i++)
             {
@@ -118,12 +117,6 @@ public class IsTextCloseEnough : MonoBehaviour
             finishedPaper = true;
             if (amountOfMinigamesDone > 4)
             {
-                for (int i = 0; i < amountOfMinigamesDone; i++)
-                {
-                    print(prevScore[i]);
-                    print(prevGuess[i]);
-                    print(prevName[i]);
-                }
                 StartCoroutine(ShowResults());
             }
             else
@@ -141,13 +134,13 @@ public class IsTextCloseEnough : MonoBehaviour
         int rnd = 0;
 
         string date = "";
-        rnd = Random.Range(1, 29);
-        if(rnd < 10) { date += 0; }
+        rnd = Random.Range(1980, 2025);
         date += rnd;
         rnd = Random.Range(1, 13);
         if (rnd < 10) { date += 0; }
         date += rnd;
-        rnd = Random.Range(1980, 2025);
+        rnd = Random.Range(1, 29);
+        if (rnd < 10) { date += 0; }
         date += rnd;
         actualText.Add(date);
 
@@ -189,11 +182,11 @@ public class IsTextCloseEnough : MonoBehaviour
             te = topicTextArea[sorting[i]].transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
             if (i == 0)
             {
-                te.text = actualText[i].Substring(0, 2);
+                te.text = actualText[i].Substring(0, 4);
                 te.text += "/";
-                te.text += actualText[i].Substring(2, 2);
+                te.text += actualText[i].Substring(4, 2);
                 te.text += "/";
-                te.text += actualText[i].Substring(4, 4);
+                te.text += actualText[i].Substring(6, 2);
             }
             else
             {
@@ -220,14 +213,15 @@ public class IsTextCloseEnough : MonoBehaviour
         finishedPaper = false;
         MakeName();
         PutOntoPaper();
-        ReadInfo();
     }
 
     public IEnumerator ShowResults()
     {
+        GameObject.Find("Player").GetComponent<Interactor>().enabled = false;
         blackBackground.color = new Color(0, 0, 0, 0.7f);
         blackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
+        GameObject.Find("InteractionText").GetComponent<TMP_Text>().text = " ";
         resultsPaper.SetActive(true);
         int goodResults = 0;
         for(int i = 0;i < prevScore.Count();i++)
@@ -242,12 +236,21 @@ public class IsTextCloseEnough : MonoBehaviour
         {
             case 0:
                 resultsText.text = "Ontslagen";
+                cheatSheet.transform.parent = resultsPaper.transform;
+                resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
+                cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
                 break;
             case 1:
                 resultsText.text = "Je bent gedegradeerd";
+                cheatSheet.transform.parent = resultsPaper.transform;
+                resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
+                cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
                 break;
             case 2:
                 resultsText.text = "Je kan het beter doen.";
+                cheatSheet.transform.parent = resultsPaper.transform;
+                resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
+                cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
                 break;
             case 3:
                 resultsText.text = "Goed bezig!";
@@ -265,7 +268,6 @@ public class IsTextCloseEnough : MonoBehaviour
 
         for(int i = 0; i < prevScore.Count(); i++)
         {
-            print(prevScore.Count());
             GameObject res = Instantiate(actualResults);
             res.transform.parent = resultsText.transform.parent;
             RectTransform rect = res.GetComponent<RectTransform>();

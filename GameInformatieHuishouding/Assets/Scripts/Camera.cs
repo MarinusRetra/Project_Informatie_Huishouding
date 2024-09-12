@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    public static bool BlindMode = true;
+    public static bool BlindMode = false;
 
     [SerializeField]
     List<GameObject> InteractableObjects;
