@@ -24,7 +24,15 @@ public class Papier : MonoBehaviour, IInteractable
                 ViewPaper();
         }
 
-        if (InteractionScript.isHovering)
+        if (PapierObject.activeSelf && !HoldingPaper)
+        {
+            PapierObject.SetActive(false);
+            Camera.ToggleCameraLock();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (InteractionScript.isHovering && InteractionScript.interactionText.text == GetInteractionText())
             OutlineMat.SetFloat(OutlineScale, 1.05f);
         else
             OutlineMat.SetFloat(OutlineScale, 0f);
@@ -43,7 +51,6 @@ public class Papier : MonoBehaviour, IInteractable
     {
         Camera.ToggleCameraLock();
         Cursor.visible = !Cursor.visible;
-        Cursor.lockState = CursorLockMode.Confined;
         PapierObject.SetActive(!PapierObject.activeSelf);
 
         if (PapierObject.activeSelf)

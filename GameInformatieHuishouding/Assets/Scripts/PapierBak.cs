@@ -16,13 +16,26 @@ public class PapierBak : MonoBehaviour, IInteractable
     }
     void Update()
     {
-        if (InteractionScript.isHovering)
-            OutlineMat.SetFloat(OutlineScale, 1.05f);
+        if (InteractionScript.isHovering && InteractionScript.interactionText.text == GetInteractionText())
+            OutlineMat.SetFloat(OutlineScale, 1.03f);
         else
             OutlineMat.SetFloat(OutlineScale, 0f);
     }
     public void Interact()
     {
+        if (opslagNaam == "rijksdocument ")
+        {
+        // check of dit een rijksdocument is
+
+        }
+        else if (opslagNaam == " ")
+        {
+            
+        }
+        else if (opslagNaam == " ")
+        { 
+        
+        }
         Papier.HoldingPaper = false;
     }
 

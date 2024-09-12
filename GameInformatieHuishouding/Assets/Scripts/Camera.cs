@@ -23,7 +23,6 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
-
         //stopt alle interactable objects in een list
         InteractableObjects = GrabInteractableObjects();
 
@@ -64,7 +63,6 @@ public class Camera : MonoBehaviour
             xRotation = Math.Clamp(xRotation, -90f, 90f);
 
             yRotation -= mouseX;
-            yRotation = Math.Clamp(yRotation, -90f, 90f);
 
             if (!camLocked)
             { 
