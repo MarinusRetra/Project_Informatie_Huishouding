@@ -8,6 +8,7 @@ public class PapierBak : MonoBehaviour, IInteractable
     Interactor InteractionScript;
     public Material OutlineMat;
     public string OutlineScale;
+    const string glyphs = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 
     void Start()
@@ -35,6 +36,25 @@ public class PapierBak : MonoBehaviour, IInteractable
         else if (opslagNaam == " ")
         { 
         
+        }
+
+        if(opslagNaam == "Lever papier in")
+        {
+            IsTextCloseEnough clo = FindObjectOfType<IsTextCloseEnough>();
+            if(clo.field.text != "" && clo.field.text != " ")
+            {
+                clo.CheckText(clo.field.text);
+            }
+            else
+            {
+                string randomString = "";
+                int charAmount = Random.Range(10, 20);
+                for (int i = 0; i < charAmount; i++)
+                {
+                    randomString += glyphs[Random.Range(0, glyphs.Length)];
+                }
+                clo.CheckText(randomString,false);
+            }
         }
         Papier.HoldingPaper = false;
     }

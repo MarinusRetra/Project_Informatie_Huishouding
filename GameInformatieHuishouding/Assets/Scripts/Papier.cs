@@ -8,6 +8,7 @@ public class Papier : MonoBehaviour, IInteractable
     public Material OutlineMat;
     public string OutlineScale;
     GameObject PapierObject;
+    public bool canLetDown = true;
 
     void Start()
     {
@@ -20,7 +21,7 @@ public class Papier : MonoBehaviour, IInteractable
     {
         if(HoldingPaper)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && canLetDown)
                 ViewPaper();
         }
 
@@ -54,8 +55,16 @@ public class Papier : MonoBehaviour, IInteractable
         PapierObject.SetActive(!PapierObject.activeSelf);
 
         if (PapierObject.activeSelf)
+        {
+            FindAnyObjectByType<IsTextCloseEnough>().ReadInfo();
             Cursor.lockState = CursorLockMode.Confined;
+        }
         else
             Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void SetCanLetDown(bool canLet)
+    {
+        canLetDown = canLet;
     }
 }
