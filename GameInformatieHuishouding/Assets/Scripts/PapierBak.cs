@@ -26,7 +26,7 @@ public class PapierBak : MonoBehaviour, IInteractable
     {
         if (opslagNaam == "rijksdocument ")
         {
-        // check of dit een rijksdocument is
+            // if papiertje dat je vast hebt gelijk is 
 
         }
         else if (opslagNaam == " ")
