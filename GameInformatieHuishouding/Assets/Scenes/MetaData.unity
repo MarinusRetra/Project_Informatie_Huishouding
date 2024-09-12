@@ -2399,6 +2399,12 @@ MonoBehaviour:
   - {fileID: 456625358}
   - {fileID: 946044453}
   - {fileID: 2057315193}
+  - {fileID: 1226260659}
+  - {fileID: 800247840}
+  - {fileID: 2058430426}
+  - {fileID: 1591783561}
+  - {fileID: 393795395}
+  - {fileID: 1136384892}
   currentorder: 0
   tts: {fileID: 328654692}
 --- !u!1 &328654688
@@ -10125,7 +10131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1783023602
 RectTransform:
   m_ObjectHideFlags: 0
