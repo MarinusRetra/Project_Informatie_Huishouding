@@ -128,6 +128,7 @@ public class TabControle : MonoBehaviour
             lastBtn.GetComponent<Image>().color = new Color(255, 255, 255, 100);
         }
 
+        if (read.Contains("___")) { read = "Dit document is ondertekend"; }
         TTS.instance.Talk(read);
         print(stuff[currentorder].name);
         

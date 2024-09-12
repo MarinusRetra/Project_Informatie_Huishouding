@@ -69,9 +69,9 @@ public class Papier : MonoBehaviour, IInteractable
 
         if (PapierObject.activeSelf)
         {
-            close.ReadInfo();
+            if(close != null) { close.ReadInfo(); }
             Cursor.lockState = CursorLockMode.None;
-            if (Camera.BlindMode)
+            if (Camera.BlindMode && close != null)
             {
                 close.field.ActivateInputField();
             }
