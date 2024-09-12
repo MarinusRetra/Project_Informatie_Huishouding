@@ -9,7 +9,7 @@ public class TabControle : MonoBehaviour
 {
     public List<GameObject> stuff;
     public int currentorder = 0;
-
+    public TTS tts;
 
 
     // Update is called once per frame
@@ -39,7 +39,7 @@ public class TabControle : MonoBehaviour
         }
     }
 
-    private void GoToNextStuff(int offset)
+    public void GoToNextStuff(int offset)
     {
         GameObject lastBtn = stuff[currentorder];
         currentorder += offset;
@@ -91,7 +91,7 @@ public class TabControle : MonoBehaviour
         string read = "";
         if (stuff[currentorder].GetComponent<Button>() != null)
         {
-            stuff[currentorder].GetComponent<Image>().color = new Color(118f / 255f, 210f / 255f,182f / 255f,100);
+            stuff[currentorder].GetComponent<Image>().color = new Color(118f / 255f, 210f / 255f, 182f / 255f, 100);
             read = stuff[currentorder].transform.GetChild(0).GetComponent<TMP_Text>().text;
         }
         if (stuff[currentorder].GetComponent<TMP_Text>() != null)
@@ -103,12 +103,13 @@ public class TabControle : MonoBehaviour
             read = "Input Field";
         }
 
-        if(lastBtn.GetComponent<Button>() != null)
+        if (lastBtn.GetComponent<Button>() != null)
         {
             lastBtn.GetComponent<Image>().color = new Color(255, 255, 255, 100);
         }
 
         TTS.instance.Talk(read);
         print(stuff[currentorder].name);
+        
     }
 }
