@@ -54,7 +54,7 @@ public class Papier : MonoBehaviour, IInteractable
         return HoldingPaper ? "Leg eerst je oude papier weg" : "Pak papier 'E' ";
     }
 
-    void ViewPaper()
+    public void ViewPaper()
     {
         Camera.ToggleCameraLock();
         Cursor.visible = !Cursor.visible;
