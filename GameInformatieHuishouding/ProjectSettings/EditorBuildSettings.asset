@@ -8,7 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Marlon.unity
     guid: cfe988bf7820c304baf2fa3d33ac2535
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ali.unity
     guid: b4622f62149ef98408c8095516e198bf
+  - enabled: 0
+    path: Assets/Scenes/Rudo.unity
+    guid: 8ce1af60a7e87654f84606acb73392e1
+  - enabled: 1
+    path: Assets/Scenes/MetaData.unity
+    guid: cb0d2c72613059042bde44b784d4a132
+  - enabled: 1
+    path: Assets/Scenes/Archiveer.unity
+    guid: c1cefb880c7862a41891739f13646ea6
   m_configObjects: {}
