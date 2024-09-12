@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab15ae60d92bad340a0d41ffc4f457d0, type: 3}
   m_Name: DocumentData
   m_EditorClassIdentifier: 
-  documentName: 
   category: 0
   differentSys: 0
   isInternal: 0
   isPersonal: 0
-  isThirdParty: 0
-  isCorrenpendence: 0
+  isCorrespondence: 0
   rightVersion: 0
