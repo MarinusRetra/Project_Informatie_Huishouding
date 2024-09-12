@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class TabControle : MonoBehaviour
 {
@@ -42,6 +43,12 @@ public class TabControle : MonoBehaviour
             {
                 stuff[currentorder].GetComponent<BetterButton>().onLeftClick.Invoke();
                 stuff[currentorder].GetComponent<BetterButton>().onRightClick.Invoke();
+            }
+            if (stuff[currentorder].GetComponent<TMP_InputField>() != null)
+            {
+                stuff[currentorder].GetComponent<TMP_InputField>().DeactivateInputField();
+                var eventSystem = EventSystem.current;
+                eventSystem.SetSelectedGameObject(null);
             }
         }
     }
