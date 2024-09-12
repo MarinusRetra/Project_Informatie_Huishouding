@@ -12,11 +12,12 @@ public class TTS : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        Camera.ToggleCameraLock();
         Cursor.visible = true;
+        Camera.ToggleCameraLock();
+        instance = this;
         SetDutchVoice();
     }
+
     // step 1 use this code 
     public void Talk(string text)
     {
