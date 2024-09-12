@@ -29,6 +29,7 @@ public class IsTextCloseEnough : MonoBehaviour
     [SerializeField] private GameObject resultsPaper;
     [SerializeField] private TMP_Text resultsText;
     [SerializeField] private GameObject actualResults;
+    [SerializeField] private RectTransform[] resultSpots;
 
     public TMP_InputField field;
 
@@ -275,7 +276,7 @@ public class IsTextCloseEnough : MonoBehaviour
             RectTransform rect = res.GetComponent<RectTransform>();
             rect.position = resultsText.GetComponent<RectTransform>().position;
             rect.localScale = new Vector3(1,1,1);
-            rect.position = new Vector3(rect.position.x ,rect.position.y - (100 + (50 * i)));
+            rect.position = resultSpots[i].position;
 
             res.transform.Find("Number").GetComponent<TMP_Text>().text = (i + 1).ToString();
             res.transform.Find("Correct").GetComponent<TMP_Text>().text = prevName[i];
