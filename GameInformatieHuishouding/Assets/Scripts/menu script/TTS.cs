@@ -1,23 +1,17 @@
 using UnityEngine;
 using SpeechLib;
-using UnityEditor;
-using UnityEngine.SceneManagement;
 
 public class TTS : MonoBehaviour
 {
     public static bool TTSON = true;
     public static TTS instance;
     SpVoice voice = new SpVoice();
-    public Camera camara;
 
     private void Awake()
     {
-        Cursor.visible = true;
-        Camera.ToggleCameraLock();
         instance = this;
         SetDutchVoice();
     }
-
     // step 1 use this code 
     public void Talk(string text)
     {
@@ -28,7 +22,6 @@ public class TTS : MonoBehaviour
         else
         {
             TTSON = false;
-            Camera.BlindMode = false;
         }
     }
 
@@ -50,9 +43,7 @@ public class TTS : MonoBehaviour
     public void CanTalk(bool canTalk)
     {
         TTSON = canTalk;
-        Camera.BlindMode = true;
     }
-
 
 
 

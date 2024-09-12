@@ -31,7 +31,7 @@ public class Interactor : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (!isWaiting)
                 interactionCoroutine = StartCoroutine(WaitAndInteract(0.5f));
