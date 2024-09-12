@@ -61,6 +61,7 @@ public class Papier : MonoBehaviour, IInteractable
 
     public void ViewPaper()
     {
+        print("Called");
         IsTextCloseEnough close = FindAnyObjectByType<IsTextCloseEnough>();
         GameObject.Find("Player").GetComponent<Camera>().SwitchCanTab(PapierObject.activeSelf);
         interactionText.SetActive(PapierObject.activeSelf);

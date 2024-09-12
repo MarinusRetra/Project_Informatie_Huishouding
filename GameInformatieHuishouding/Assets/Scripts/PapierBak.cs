@@ -110,6 +110,7 @@ public class PapierBak : MonoBehaviour, IInteractable
             IncomingDocument.AfkomstObject.text = TeamsFout == 0 ?  "Er is geen foute informatie in het Teams bakje beland. Knap gedaan!": $"Je hebt {TeamsFout} documenten in het Teams bakje gedaan die voor een ander leven ingeschreven stonden";
         }
         GameObject.Find("PapierStapel").GetComponent<Papier>().ViewPaper();
+        FindAnyObjectByType<Papier>().enabled = false;
     }
 }
     
