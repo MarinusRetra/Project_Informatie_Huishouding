@@ -2316,7 +2316,7 @@ MonoBehaviour:
   allTitles:
   - InformationHuisHouding
   - Concept Inrichting
-  - Dictu Gebouw Plan
+  - Dictu gebouw plan
   - MID Noorderpoort Pitch (Serious Game)
   - Verplichte Metadata
   - 'Betreft: Hondenuitlaatregeling'
@@ -2324,7 +2324,7 @@ MonoBehaviour:
   - Planning voor December
   - Lijst van werkers
   - Regels op locatie
-  - plan voor het verwijderen van geesten
+  - Plan voor het verwijderen van geesten
   - Wijziging regels op locatie
   allTypes:
   - Handleiding
@@ -2339,7 +2339,7 @@ MonoBehaviour:
   - Noorderpoort
   - Dictu
   - Philips
-  - Coca Cola
+  - The Coca Cola Company
   - Alfa College
   blackBackground: {fileID: 664169897}
   resultsPaper: {fileID: 656407735}
