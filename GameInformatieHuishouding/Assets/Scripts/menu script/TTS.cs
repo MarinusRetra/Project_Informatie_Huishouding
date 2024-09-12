@@ -14,6 +14,7 @@ public class TTS : MonoBehaviour
     {
         instance = this;
         Camera.ToggleCameraLock();
+        Cursor.visible = true;
         SetDutchVoice();
     }
     // step 1 use this code 
