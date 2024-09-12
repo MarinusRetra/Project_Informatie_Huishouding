@@ -1,26 +1,33 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class TabControle : MonoBehaviour
 {
     public List<GameObject> stuff;
     public int currentorder = 0;
     public TTS tts;
+    private bool isEnabled = true;
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Metadata")
+        {
+            isEnabled = false;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift) && isEnabled)
         {
             GoToNextStuff(1);
         }
 
-        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Tab) && isEnabled)
         {
             GoToNextStuff(-1);
         }
@@ -111,5 +118,10 @@ public class TabControle : MonoBehaviour
         TTS.instance.Talk(read);
         print(stuff[currentorder].name);
         
+    }
+
+    public void canUse(bool canUse)
+    {
+        isEnabled = canUse;
     }
 }

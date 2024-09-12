@@ -9,9 +9,11 @@ public class Papier : MonoBehaviour, IInteractable
     public string OutlineScale;
     GameObject PapierObject;
     public bool canLetDown = true;
+    GameObject interactionText;
 
     void Start()
     {
+        interactionText = GameObject.Find("InteractionText");
         InteractionScript = GameObject.Find("Player").GetComponent<Interactor>();
         PapierObject = GameObject.Find("PaperObject");
         PapierObject.SetActive(false);
@@ -50,6 +52,9 @@ public class Papier : MonoBehaviour, IInteractable
 
     void ViewPaper()
     {
+        GameObject.Find("Player").GetComponent<Camera>().enabled = PapierObject.activeSelf;
+        interactionText.SetActive(PapierObject.activeSelf);
+        FindAnyObjectByType<TabControle>().canUse(!PapierObject.activeSelf);
         Camera.ToggleCameraLock();
         Cursor.visible = !Cursor.visible;
         PapierObject.SetActive(!PapierObject.activeSelf);
