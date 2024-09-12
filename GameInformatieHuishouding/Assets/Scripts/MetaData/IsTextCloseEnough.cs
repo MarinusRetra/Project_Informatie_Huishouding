@@ -97,8 +97,6 @@ public class IsTextCloseEnough : MonoBehaviour
 
             float tot = ((float)fullText.Length) + ((float)fullText.Length - ((float)amountGood)) * 5;
             float percent = (100 / tot) * (float)amountGood;
-            print(percent);
-            print("Score: " + amountGood + "/" + tot);
 
             prevScore[amountOfMinigamesDone] = percent;
             prevName[amountOfMinigamesDone] = fullText;
