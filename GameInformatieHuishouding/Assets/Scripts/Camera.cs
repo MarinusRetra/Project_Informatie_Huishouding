@@ -23,6 +23,7 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
+
         //stopt alle interactable objects in een list
         InteractableObjects = GrabInteractableObjects();
 
