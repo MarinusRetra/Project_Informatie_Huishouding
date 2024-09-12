@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DocumentGenerator : MonoBehaviour
 {
-    enum DocType { NietRijksDoc, Teams, RijksDoc }
-    DocType Doc { get; set; }
-
+    public enum DocType { NietRijksDoc, Teams, RijksDoc }
+    public DocType Doc { get; private set; }
     public TextMeshProUGUI TitelObject;
     public TextMeshProUGUI TextObject;
     public TextMeshProUGUI AfkomstObject;
@@ -51,7 +50,7 @@ public class DocumentGenerator : MonoBehaviour
         else // als het een teams bestemd bestand is
         {
             Titel = new List<string>() { "Concept website", "Design concept", "Concept verbetering cloud werkplek" };
-            Text = new List<string>() { "Stap 1 maak. \nStap 2 klaar", "Een verzameling toffe ideeën", "Een gestructureerd en duidelijk plan" };
+            Text = new List<string>() { "Stap 1 maak. \nStap 2 klaar", "Een verzameling toffe ideeï¿½n", "Een gestructureerd en duidelijk plan" };
             Afkomst = new List<string>() { "DICTU" };
             BestandType = new List<string>() { "WordDocument", "Foto", ".txt", "PDF" };
             Ondertekend = false;
