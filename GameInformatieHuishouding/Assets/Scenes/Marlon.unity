@@ -1997,7 +1997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: -142}
+  m_AnchoredPosition: {x: -4, y: -135}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &419672505
@@ -2237,7 +2237,8 @@ MonoBehaviour:
   - {fileID: 1052799457}
   - {fileID: 329977550}
   - {fileID: 394179566}
-  - {fileID: 1809915006}
+  - {fileID: 1699375689}
+  - {fileID: 1151727646}
   - {fileID: 887763375}
   - {fileID: 1235529958}
   - {fileID: 1699375689}
@@ -2261,6 +2262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41210861c99964f4e9a572302b22d752, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camara: {fileID: 0}
 --- !u!1 &517647006
 GameObject:
   m_ObjectHideFlags: 0
@@ -3271,7 +3273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3, y: -27}
+  m_AnchoredPosition: {x: -3, y: -20}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796606127
@@ -3557,7 +3559,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Ali
+          m_StringArgument: Marinus
           m_BoolArgument: 0
         m_CallState: 1
       - m_Target: {fileID: 0}
@@ -4014,7 +4016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1153866518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4478,7 +4480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: -49}
+  m_AnchoredPosition: {x: -19, y: 11}
   m_SizeDelta: {x: 168.9, y: 34.464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1235529960
@@ -4986,7 +4988,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: voor lezen (tts)
+  m_text: Blind mode
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5527,14 +5529,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'de E knop is om papier op te paken
-
-
-    druk op de R knop om papier te
-    lezen
-
-
-'
+  m_text: "de E knop is om papier op te paken\n\ndruk op de R knop om papier te lezen\n\nde
+    \n\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5647,7 +5643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: -133}
+  m_AnchoredPosition: {x: -19, y: -73}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1699375691
@@ -6188,7 +6184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1992125716
 MonoBehaviour:
   m_ObjectHideFlags: 0
