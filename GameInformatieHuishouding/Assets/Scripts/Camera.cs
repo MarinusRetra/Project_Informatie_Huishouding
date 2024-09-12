@@ -20,6 +20,7 @@ public class Camera : MonoBehaviour
 
     float xRotation = 0f;
     float yRotation = 0f;
+    private bool canTab = true;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class Camera : MonoBehaviour
     {
         if (BlindMode)
         { 
-            if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.Tab) && !Input.GetKey(KeyCode.LeftShift) && canTab)
             {
                 interactor.doVoice = true;
                 selectedObject++;
@@ -46,7 +47,7 @@ public class Camera : MonoBehaviour
                     selectedObject = 0;
                 Player.LookAt(InteractableObjects[selectedObject].transform);
             }
-            if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.Tab) && Input.GetKey(KeyCode.LeftShift) && canTab)
             {
                 interactor.doVoice = true;
                 selectedObject--;
@@ -89,5 +90,10 @@ public class Camera : MonoBehaviour
             Interactables.Add(child.gameObject);
 
         return Interactables;
+    }
+
+    public void SwitchCanTab(bool can)
+    {
+        canTab = can;
     }
 }

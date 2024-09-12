@@ -12,6 +12,9 @@ public class IsTextCloseEnough : MonoBehaviour
     private string fullText = "ManIDoNotExist";
 
     [SerializeField] private GameObject[] topicTextArea;
+    [SerializeField] private GameObject cheatSheet;
+    [SerializeField] private RectTransform failResultSpot;
+    [SerializeField] private RectTransform failCheatSpot;
 
     [SerializeField] private string[] allTitles;
     [SerializeField] private string[] allTypes;
@@ -26,6 +29,11 @@ public class IsTextCloseEnough : MonoBehaviour
     [SerializeField] private GameObject resultsPaper;
     [SerializeField] private TMP_Text resultsText;
     [SerializeField] private GameObject actualResults;
+    [SerializeField] private RectTransform[] resultSpots;
+
+    public TMP_InputField field;
+
+    private bool finishedPaper = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +47,14 @@ public class IsTextCloseEnough : MonoBehaviour
         
     }
 
-    public void CheckText(string text)
+    public void CheckText(string text,bool talk = true)
     {
-        if(text != "" && text != " ")
+        if(text != "" && text != " " && !finishedPaper)
         {
-            TTS.instance.Talk(text);
+            if (talk)
+            {
+                TTS.instance.Talk(text);
+            }
             int amountGood = 0;
             for (int i = 0; i < text.Length; i++)
             {
@@ -86,13 +97,13 @@ public class IsTextCloseEnough : MonoBehaviour
 
             float tot = ((float)fullText.Length) + ((float)fullText.Length - ((float)amountGood)) * 5;
             float percent = (100 / tot) * (float)amountGood;
-            print(percent);
-            print("Score: " + amountGood + "/" + tot);
 
             prevScore[amountOfMinigamesDone] = percent;
             prevName[amountOfMinigamesDone] = fullText;
             prevGuess[amountOfMinigamesDone] = text;
             amountOfMinigamesDone++;
+
+            field.text = " ";
 
             if (percent > 80)
             {
@@ -102,15 +113,10 @@ public class IsTextCloseEnough : MonoBehaviour
             {
                 print("BOOOOOO YOU SUCK");
             }
+            finishedPaper = true;
             if (amountOfMinigamesDone > 4)
             {
-                for (int i = 0; i < amountOfMinigamesDone; i++)
-                {
-                    print(prevScore[i]);
-                    print(prevGuess[i]);
-                    print(prevName[i]);
-                    StartCoroutine(ShowResults());
-                }
+                StartCoroutine(ShowResults());
             }
             else
             {
@@ -127,13 +133,13 @@ public class IsTextCloseEnough : MonoBehaviour
         int rnd = 0;
 
         string date = "";
-        rnd = Random.Range(1, 29);
-        if(rnd < 10) { date += 0; }
+        rnd = Random.Range(1980, 2025);
         date += rnd;
         rnd = Random.Range(1, 13);
         if (rnd < 10) { date += 0; }
         date += rnd;
-        rnd = Random.Range(1980, 2025);
+        rnd = Random.Range(1, 29);
+        if (rnd < 10) { date += 0; }
         date += rnd;
         actualText.Add(date);
 
@@ -158,12 +164,11 @@ public class IsTextCloseEnough : MonoBehaviour
                 fullText += " ";
             }
         }
-        print(fullText);
     }
 
     public void PutOntoPaper()
     {
-        string[] types = { "Titel","Datum", "Organizatie","Type","Versie"};
+        string[] types = { "Titel","Datum", "Organisatie","Type","Versie"};
         int[] sorting = {1,3,0,2,4};
         for (int i = 0; i < 5; i++)
         {
@@ -175,11 +180,11 @@ public class IsTextCloseEnough : MonoBehaviour
             te = topicTextArea[sorting[i]].transform.GetChild(1).gameObject.GetComponent<TMP_Text>();
             if (i == 0)
             {
-                te.text = actualText[i].Substring(0, 2);
+                te.text = actualText[i].Substring(0, 4);
                 te.text += "/";
-                te.text += actualText[i].Substring(2, 2);
+                te.text += actualText[i].Substring(4, 2);
                 te.text += "/";
-                te.text += actualText[i].Substring(4, 4);
+                te.text += actualText[i].Substring(6, 2);
             }
             else
             {
@@ -198,20 +203,26 @@ public class IsTextCloseEnough : MonoBehaviour
             fullTalk += topicTextArea[i].transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text;
             fullTalk += "                      ...";
         }
-        TTS.instance.Talk(fullTalk);
+        //TTS.instance.Talk(fullTalk);
     }
 
     public void StartPaperGame()
     {
+        finishedPaper = false;
         MakeName();
         PutOntoPaper();
-        ReadInfo();
     }
 
     public IEnumerator ShowResults()
     {
+        Camera.ToggleCameraLock();
+        Cursor.visible = !Cursor.visible;
+        Cursor.lockState = CursorLockMode.None;
+        GameObject.Find("Player").GetComponent<Interactor>().enabled = false;
         blackBackground.color = new Color(0, 0, 0, 0.7f);
+        blackBackground.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
+        GameObject.Find("InteractionText").GetComponent<TMP_Text>().text = " ";
         resultsPaper.SetActive(true);
         int goodResults = 0;
         for(int i = 0;i < prevScore.Count();i++)
@@ -226,12 +237,21 @@ public class IsTextCloseEnough : MonoBehaviour
         {
             case 0:
                 resultsText.text = "Ontslagen";
+                cheatSheet.transform.parent = resultsPaper.transform;
+                resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
+                cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
                 break;
             case 1:
                 resultsText.text = "Je bent gedegradeerd";
+                cheatSheet.transform.parent = resultsPaper.transform;
+                resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
+                cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
                 break;
             case 2:
                 resultsText.text = "Je kan het beter doen.";
+                cheatSheet.transform.parent = resultsPaper.transform;
+                resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
+                cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
                 break;
             case 3:
                 resultsText.text = "Goed bezig!";
@@ -246,5 +266,31 @@ public class IsTextCloseEnough : MonoBehaviour
                 resultsText.text = "Je hebt te veel papierwerk gedaan.";
                 break;
         }
+        TabControle cont = FindObjectOfType<TabControle>();
+        for (int i = 0; i < prevScore.Count(); i++)
+        {
+            GameObject res = Instantiate(actualResults);
+            res.transform.parent = resultsText.transform.parent;
+            RectTransform rect = res.GetComponent<RectTransform>();
+            rect.position = resultsText.GetComponent<RectTransform>().position;
+            rect.localScale = new Vector3(1,1,1);
+            rect.position = resultSpots[i].position;
+
+            res.transform.Find("Number").GetComponent<TMP_Text>().text = (i + 1).ToString();
+            res.transform.Find("Correct").GetComponent<TMP_Text>().text = prevName[i];
+            res.transform.Find("Written").GetComponent<TMP_Text>().text = prevGuess[i];
+            res.transform.Find("Percent").GetComponent<TMP_Text>().text = ((int)(prevScore[i])).ToString();
+            cont.stuff.Add(res.transform.Find("Number").gameObject);
+            cont.stuff.Add(res.transform.Find("Correct").gameObject);
+            cont.stuff.Add(res.transform.Find("Written").gameObject);
+            cont.stuff.Add(res.transform.Find("Percent").gameObject);
+
+        }
+        cont.stuff.Add(resultsText.transform.parent.Find("Exit").gameObject);
+    }
+    public void SpeakCharacter(string character)
+    {
+        
+        TTS.instance.Talk(character);
     }
 }

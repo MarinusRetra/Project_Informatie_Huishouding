@@ -45,7 +45,7 @@ public class DocumentGenerator : MonoBehaviour
             Text = new List<string>() { "Inkomsten: Te laag\nUitgaven: Te hoog", "Test resultaat: :)", "Een goede manier werken staat hier beschreven", "Belangrijke en goedgekeurde informatie" };
             Afkomst = new List<string>() { "DICTU" };
             BestandType = new List<string>() { ".TXT", ".PDF", ".xlsx" };
-            Ondertekend = Random.value < 0.2f;
+            Ondertekend = Random.value < 0.3f;
         }
         else // als het een teams bestemd bestand is
         {
@@ -55,6 +55,8 @@ public class DocumentGenerator : MonoBehaviour
             BestandType = new List<string>() { "WordDocument", "Foto", ".txt", "PDF" };
             Ondertekend = false;
         }
+
+        OndertekendObject.gameObject.SetActive(Ondertekend);
         TitelObject.text = $"Titel: {Titel[Random.Range(0, Titel.Count)]}";
         
         if (TitelObject.text != "Systeem test 07/11/2024")
