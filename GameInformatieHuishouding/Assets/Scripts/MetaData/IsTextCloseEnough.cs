@@ -240,18 +240,21 @@ public class IsTextCloseEnough : MonoBehaviour
                 cheatSheet.transform.parent = resultsPaper.transform;
                 resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
                 cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
+                gameObject.GetComponent<FlipPage>().FlipThePage(cheatSheet);
                 break;
             case 1:
                 resultsText.text = "Je bent gedegradeerd";
                 cheatSheet.transform.parent = resultsPaper.transform;
                 resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
                 cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
+                gameObject.GetComponent<FlipPage>().FlipThePage(cheatSheet);
                 break;
             case 2:
                 resultsText.text = "Je kan het beter doen.";
                 cheatSheet.transform.parent = resultsPaper.transform;
                 resultsPaper.GetComponent<RectTransform>().position = failResultSpot.position;
                 cheatSheet.GetComponent<RectTransform>().position = failCheatSpot.position;
+                gameObject.GetComponent<FlipPage>().FlipThePage(cheatSheet);
                 break;
             case 3:
                 resultsText.text = "Goed bezig!";
