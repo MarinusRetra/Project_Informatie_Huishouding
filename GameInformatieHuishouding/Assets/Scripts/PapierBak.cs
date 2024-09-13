@@ -108,7 +108,11 @@ public class PapierBak : MonoBehaviour, IInteractable
             IncomingDocument.TitelObject.text = RijksdocFout == 0 ? "Je hebt geen een fout document in het RijksDoc bakje gestopt. Mooi gedaan!": $"Je hebt {RijksdocFout} documenten in het RijksDoc bakje terwijl ze daar niet thuishoren";
             IncomingDocument.TextObject.text = NietrijksdocFout == 0 ? "Er is geen een onterect bestand beland buiten het NietRijksDoc bakje. Ga zo door!" : $"Je hebt {NietrijksdocFout} documenten in het NietRijksDoc bakje terwijl ze ergens anders horen";
             IncomingDocument.AfkomstObject.text = TeamsFout == 0 ?  "Er is geen foute informatie in het Teams bakje beland. Knap gedaan!": $"Je hebt {TeamsFout} documenten in het Teams bakje gedaan die voor een ander leven ingeschreven stonden";
+            IncomingDocument.OndertekendObject.gameObject.SetActive(false);
+            IncomingDocument.BestandTypeObject.gameObject.SetActive(false);
         }
+
+        IncomingDocument.TextObject.GetComponent<RectTransform>().position = IncomingDocument.TextObject.transform.parent.Find("EmpySpo").GetComponent<RectTransform>().position;
         GameObject.Find("PapierStapel").GetComponent<Papier>().ViewPaper();
         FindAnyObjectByType<Papier>().enabled = false;
     }
